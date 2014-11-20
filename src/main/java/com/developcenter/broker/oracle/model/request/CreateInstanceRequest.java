@@ -2,7 +2,7 @@ package com.developcenter.broker.oracle.model.request;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @JsonIgnoreProperties
 public class CreateInstanceRequest implements Serializable {

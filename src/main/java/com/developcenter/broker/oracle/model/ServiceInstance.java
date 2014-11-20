@@ -7,7 +7,7 @@ public class ServiceInstance {
 	static String SERVICE_NAME_PREFIX = "cf_";
 
 	/**
-	 * 保存服务实例ID，以及ServiceName
+	 * 
 	 * @param id
 	 */
 	public ServiceInstance(String id,String planId) {

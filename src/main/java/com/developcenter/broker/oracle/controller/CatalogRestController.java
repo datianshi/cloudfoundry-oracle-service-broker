@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.developcenter.broker.oracle.common.Cache;
 
-/**
- * Author: Sridharan Kuppa sridharan.kuppa@gmail.com
- * Date: 12/12/13
- */
+
 @Controller
 class CatalogRestController {
 	private Log logger = LogFactory.getLog(CatalogRestController.class);

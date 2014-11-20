@@ -25,7 +25,7 @@ import com.developcenter.broker.oracle.model.ServiceBinding;
 import com.developcenter.broker.oracle.model.ServiceInstance;
 
 /**
- * Author: Sridharan Kuppa sridharan.kuppa@gmail.com Date: 12/12/13
+ * 
  */
 @Service
 @Transactional
@@ -48,7 +48,7 @@ public class ServiceBindingService implements EnvironmentAware {
 	 * 
 	 * @param bindingId
 	 * @param serviceInstance
-	 *            将bindingId 与serviceInstance 绑定
+	 *            
 	 * @return
 	 */
 	public ServiceBinding constructServiceBinding(String bindingId,String appId,
@@ -59,7 +59,7 @@ public class ServiceBindingService implements EnvironmentAware {
 		serviceBinding.setDate(Util.getSysTime());
 		serviceBinding.setInstanceid(serviceInstance.getId());
 		serviceBinding.setPassword(Util.getRandomString(10));
-		serviceBinding.setUsername("C##" + serviceInstance.getInstancename()); // 用户名与
+		serviceBinding.setUsername("C##" + serviceInstance.getInstancename()); 
 		serviceBinding.setAppid(appId);																		// 表空间名，表空间文件一致
 		serviceBinding.setUrl(ConfigUtil.getInstance().getOracleUrl());
 		return serviceBinding;
@@ -84,7 +84,7 @@ public class ServiceBindingService implements EnvironmentAware {
 			String instanceId = binding.getInstanceid();
 			String bindingId = binding.getBindingid();
 
-			String sql = "INSERT INTO servicebinding (username,password,host,port,url,date,instanceid,bindingid,appid) VALUES(?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO servicebinding (username,password,host,port,url,insert_date,instanceid,bindingid,appid) VALUES(?,?,?,?,?,?,?,?,?)";
 			Object[] params = new Object[] { userName, password, host, port,
 					url,date, instanceId, bindingId,binding.getAppid() };
 			int[] types = new int[] { Types.VARCHAR, Types.VARCHAR,
@@ -96,7 +96,7 @@ public class ServiceBindingService implements EnvironmentAware {
 			String quota = Cache.getSizeByPlanId(serviceInstance.getPlanid());
 
 			/**
-			 * oracle 操作
+			 * 
 			 */
 			StringBuilder tableSpaceSql = new StringBuilder();
 			tableSpaceSql.append(" create user ").append(userName)
@@ -106,7 +106,7 @@ public class ServiceBindingService implements EnvironmentAware {
 					.append(" quota ").append(quota).append(" on ")
 					.append(serviceInstance.getInstancename());
 			/**
-			 * 授予角色
+			 * 
 			 */
 			String roleName=ConfigUtil.getInstance().getOracleRoleName();
 			
@@ -152,7 +152,7 @@ public class ServiceBindingService implements EnvironmentAware {
 	}
 
 	/**
-	 * 查看是否已经存在
+	 * 
 	 * @param instanceId
 	 * @return
 	 */
@@ -167,7 +167,7 @@ public class ServiceBindingService implements EnvironmentAware {
 				ServiceBinding serviceBinding = new ServiceBinding();
 				serviceBinding.setAppid(rs.getString("appid"));
 				serviceBinding.setBindingid(rs.getString("bindingid"));
-				serviceBinding.setDate(rs.getString("date"));
+				serviceBinding.setDate(rs.getString("insert_date"));
 				serviceBinding.setHost(rs.getString("host"));
 				serviceBinding.setInstanceid(rs.getString("instanceid"));
 				serviceBinding.setPassword(rs.getString("password"));
@@ -201,7 +201,7 @@ public class ServiceBindingService implements EnvironmentAware {
 				ServiceBinding serviceBinding = new ServiceBinding();
 				serviceBinding.setAppid(rs.getString("appid"));
 				serviceBinding.setBindingid(rs.getString("bindingid"));
-				serviceBinding.setDate(rs.getString("date"));
+				serviceBinding.setDate(rs.getString("insert_date"));
 				serviceBinding.setHost(rs.getString("host"));
 				serviceBinding.setInstanceid(rs.getString("instanceid"));
 				serviceBinding.setPassword(rs.getString("password"));

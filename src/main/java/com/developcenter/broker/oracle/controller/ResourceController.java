@@ -24,12 +24,7 @@ import com.developcenter.broker.oracle.service.ResourceService;
 import com.developcenter.broker.oracle.service.ServiceBindingService;
 import com.developcenter.broker.oracle.service.ServiceInstanceService;
 
-/**
- * 直接申请数据库资源
- * 
- * @author wang
- * 
- */
+
 @Controller
 @RequestMapping("/resources/")
 public class ResourceController {
@@ -45,7 +40,7 @@ public class ResourceController {
 	private Log logger = LogFactory.getLog(ResourceController.class);
 
 	/**
-	 * 直接申请数据库
+	 * 
 	 * 
 	 * @param instanceId
 	 * @param request

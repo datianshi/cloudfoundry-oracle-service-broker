@@ -1,6 +1,6 @@
 package com.developcenter.broker.oracle.model.request;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @JsonIgnoreProperties
 public class ResourceCreateRequest {

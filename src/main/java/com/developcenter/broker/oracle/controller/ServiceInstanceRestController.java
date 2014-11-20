@@ -39,9 +39,6 @@ class ServiceInstanceRestController {
 	Map update(@PathVariable String id, final HttpServletRequest request,
 			HttpServletResponse response) {
 		try {
-			/**
-			 * 获取body 参数
-			 */
 			CreateInstanceRequest paramRequest = Util.getObjectFromPutMethod(
 					request, new TypeReference<CreateInstanceRequest>() {
 					});
@@ -79,18 +76,12 @@ class ServiceInstanceRestController {
 			HttpServletResponse response) {
 		try {
 			ServiceInstance serviceInstance=service.getServiceInstanceById(id);
-			/**
-			 * 检查是否存在该serviceId
-			 */
 			if (null==serviceInstance) {
 				logger.error("ServiceInstanceRestController delete service instance instance does not exist.id= "+id);
 				response.setStatus(500);
 				return null;
 			}
 			
-			/**
-			 * 检查是否已经被绑定
-			 */
 		   ServiceBinding serviceBinding=	bindingService.getServiceBindingByInstanceId(id);
 			if(null!=serviceBinding)
 			{

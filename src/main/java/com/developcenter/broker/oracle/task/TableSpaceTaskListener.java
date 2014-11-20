@@ -36,9 +36,9 @@ public class TableSpaceTaskListener implements ServletContextListener {
 	}
 
 	/**
-	 * 删除 tablespace的异步线程
 	 * 
-	 * @author wang
+	 * 
+	 * 
 	 * 
 	 */
 	public class TableSpaceDeleteTask implements Runnable {
@@ -92,7 +92,7 @@ public class TableSpaceTaskListener implements ServletContextListener {
 		}
 
 		/**
-		 * 删除Service 实例
+		 * 
 		 * 
 		 * @param instanceId
 		 */
@@ -109,7 +109,7 @@ public class TableSpaceTaskListener implements ServletContextListener {
 		}
 
 		/**
-		 * 根据待删除的instance
+		 * 
 		 * 
 		 * @param instanceId
 		 * @return

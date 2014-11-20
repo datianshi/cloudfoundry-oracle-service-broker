@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,9 +27,7 @@ public class ServiceInstanceService {
   
 	private Log logger = LogFactory.getLog(ServiceInstanceService.class);
  
-/**
- * 连接mysql 。存储broker的业务数据	
- */
+
    @Autowired 
    JdbcTemplate jdbcTemplate;
 
@@ -44,11 +41,6 @@ public class ServiceInstanceService {
      return databases.size() > 0;
   }
 
-  /**
-   * 根据ID 获取实例
-   * @param instanceId
-   * @return
-   */
 	public ServiceInstance getServiceInstanceById(String instanceId) {
 		String sql = "SELECT * FROM serviceinstance WHERE id = ?";
 		Object[] params = new Object[] { instanceId };
@@ -58,7 +50,7 @@ public class ServiceInstanceService {
 					public ServiceInstance mapRow(ResultSet rs, int rowNum)
 							throws SQLException {
 						ServiceInstance instance = new ServiceInstance();
-						instance.setDate(rs.getString("date"));
+						instance.setDate(rs.getString("insert_date"));
 						instance.setId(rs.getString("id"));
 						instance.setInstancename(rs.getString("instancename"));
 						instance.setOrgid(rs.getString("orgid"));
@@ -75,19 +67,13 @@ public class ServiceInstanceService {
 		return serviceInstances.get(0);
 	}
  
-  /**
-   * 创建Service 实例
-   * @param instanceId
- * @throws Exception 
-   */
+
   public void create(ServiceInstance instance) throws Exception {
 	  
-	  //TODO 设置回滚机制
-	  String sql = "INSERT INTO serviceinstance (id,instancename,planid,date) VALUES(?,?,?,?)";
+	  String sql = "INSERT INTO serviceinstance (id,instancename,planid,insert_date) VALUES(?,?,?,?)";
 	  Object[] params = new Object[] {instance.getId(),instance.getInstancename(),instance.getPlanid(),Util.getSysTime()};
 	  int[] types = new int[] {Types.VARCHAR,Types.VARCHAR,Types.VARCHAR,Types.VARCHAR};
 	 
-	  // 保存 service instance数据到数据库
 	  jdbcTemplate.update(sql, params, types);
 
 	   StringBuilder tableSpaceSql = new StringBuilder();
@@ -133,10 +119,6 @@ public class ServiceInstanceService {
 		}
   }
 
-  /**
-   * 删除Service 实例
-   * @param instanceId
-   */
 	public void deleteServiceInstanceById(String instanceId,String status) {
 		
 		/**

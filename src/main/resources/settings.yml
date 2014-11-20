@@ -5,12 +5,9 @@ services:
       tags:
         - oracle
         - relational
-      metadata: "mett"
+      metadata: {}
       bindable: true
       provider: "inspur"
-      listing:
-         imageUrl: ~
-         blurb: "Oracle service for application development and testing"
       plans:
           - name: 2G
             id: "5bfdf675-748b-4d66-9b5b-631b2f34efc1"
